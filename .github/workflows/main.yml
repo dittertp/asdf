@@ -39,6 +39,10 @@ jobs:
           cd app
           sencha app build production
 
+      - name: Create Artifact
+        run: |
+          tar cvzf ${{ env.PROJECT_NAME }}-${{ env.RELEASE_VERSION }}-php${{ env.PHP_VERSION }}.tar.gz .
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
