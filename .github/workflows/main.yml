@@ -23,7 +23,7 @@ jobs:
         run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF/refs\/tags\//}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v1
+        uses: shivammathur/setup-php@v2
         with:
           php-version: '${PHP_VERSION}'
           extensions: mbstring, intl
