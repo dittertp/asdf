@@ -25,7 +25,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '${PHP_VERSION}'
+          php-version: ${PHP_VERSION}
           extensions: mbstring, intl
 
       - name: Build WebApplication
@@ -38,6 +38,10 @@ jobs:
           export PATH=~/bin/Sencha/Cmd/:$PATH
           cd app
           sencha app build production
+
+      - name: Create Artifact
+        run: |
+          tar cvzf ${{ env.PROJECT_NAME }}-${{ env.RELEASE_VERSION }}-php${{ env.PHP_VERSION }}.tar.gz .
 
       - name: Create Release
         id: create_release
