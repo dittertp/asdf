@@ -36,12 +36,13 @@ jobs:
           rm SenchaCmd-${SENCHA_CMD_VERSION}-linux-amd64.sh.zip
           rm SenchaCmd-${SENCHA_CMD_VERSION}.*-linux-amd64.sh
           export PATH=~/bin/Sencha/Cmd/:$PATH
-          cd app
+          cd src/app
           sencha app build production
 
       - name: Create Artifact
         run: |
-          tar cvzf ${{ env.PROJECT_NAME }}-${{ env.RELEASE_VERSION }}-php${{ env.PHP_VERSION }}.tar.gz .
+          mv src ${{ env.PROJECT_NAME }}-${{ env.RELEASE_VERSION }}
+          tar cvzf ${{ env.PROJECT_NAME }}-${{ env.RELEASE_VERSION }}-php${{ env.PHP_VERSION }}.tar.gz ${{ env.PROJECT_NAME }}-${{ env.RELEASE_VERSION }}
 
       - name: Create Release
         id: create_release
